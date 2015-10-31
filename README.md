@@ -1,1 +1,0 @@
-# Xperia Z kernel source
