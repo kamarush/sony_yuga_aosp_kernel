@@ -139,7 +139,7 @@ void ion_reserve(struct ion_platform_data *data);
 /**
  * ion_client_create() -  allocate a client and returns it
  * @dev:	the global ion device
- * @heap_mask:	mask of heaps this client can allocate from
+ * @heap_id_mask:	mask of heaps this client can allocate from
  * @name:	used for debugging
  */
 struct ion_client *ion_client_create(struct ion_device *dev,
@@ -606,5 +606,13 @@ struct ion_custom_data {
  */
 #define ION_IOC_CUSTOM		_IOWR(ION_IOC_MAGIC, 6, struct ion_custom_data)
 
-
+/**
+ * DOC: ION_IOC_SYNC - syncs a shared file descriptors to memory
+ *
+ * Deprecated in favor of using the dma_buf api's correctly (syncing
+ * will happend automatically when the buffer is mapped to a device).
+ * If necessary should be used after touching a cached buffer from the cpu,
+ * this will make the buffer in memory coherent.
+ */
+#define ION_IOC_SYNC		_IOWR(ION_IOC_MAGIC, 7, struct ion_fd_data)
 #endif /* _LINUX_ION_H */
